@@ -1,12 +1,18 @@
 Vamos tentar, de maneira genérica, descobrir a função geradora para qualquer recurção de ordem 2.
+
+Começando da seguinte recurção genérica,
+\begin{gather*}
+    a_{n+2} = \alpha a_{n+1} + \beta a_{n}\\  a_0 = c\\ a_1 = d 
+\end{gather*}
+podemos convertê-la em uma função geradora da seguinte forma
 \begin{align*}
-    a_{n+2} &= \alpha a_{n+1} + \beta a_{n},\;  a_0 = c,\; a_1 = d \\
-    a &= c \prec (\alpha a + (d - \alpha c) \prec (\beta a)) \\
-    A(x) &= c + x(\alpha A(x) + d - \alpha c + x(\beta A(x))) \\
-        &= c + (\alpha A(x) + d - \alpha c)x + \beta A(x)x^2 \\
-    A(x) - \alpha A(x) - \beta A(x)x^2 &= c + (d - \alpha c)x \\
-    A(x)(1 - \alpha x - \beta x^2) &= c + (d - \alpha c)x \\
-    A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2}
+    a_{n+2} &= \alpha a_{n+1} + \beta a_{n} \\
+    a &= c \prec (\alpha a + (d - \alpha c) \prec (\beta a)) && \text{Conversão para notação de streams} \\
+    A(x) &= c + x(\alpha A(x) + d - \alpha c + x(\beta A(x))) && \text{Conversão para função geradora recursiva}\\
+        &= c + (\alpha A(x) + d - \alpha c)x + \beta A(x)x^2 && \text{Distributiva}\\
+    A(x) - \alpha A(x) - \beta A(x)x^2 &= c + (d - \alpha c)x && \text{Soma dos dois lados} \\
+    A(x)(1 - \alpha x - \beta x^2) &= c + (d - \alpha c)x && \text{Distributiva} \\
+    A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} && \text{Divisão dos dois lados}
 \end{align*}
 
 Com isso, sabemos encontrar a função geradora de qualquer recurção de ordem 2. Agora, vamos nos encaminhar para o método das frações parciais. Primeiro, temos que encontrar as raízes $R_1$ e $R_2$ da polinômio de segundo grau do denominador da função geradora. Aplicando a fórmula de Bhaskara, encontramos
@@ -16,9 +22,9 @@ $$R_1, R_2 = \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}$$
 A princípio, esse resultando não parece muito interessante. No entanto, podemos notar que, quando comparamos as raízes com os autovalores encontrados pelo método da diagonalização, temos
 
 \begin{align*}
-    R_i &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \\
-        &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{2 } \cdot \frac{1}{-\beta} \\
-    R_i &= \frac{\lambda_i}{-\beta}    
+    R_i &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} && \text{Bhaskara}\\
+        &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{2 } \cdot \frac{1}{-\beta} && \text{Termo em evidência}\\
+    R_i &= \frac{\lambda_i}{-\beta} && \text{Definição de } \lambda_i   
 \end{align*}
 
 Assim, temos sabemos como mapear todas as raízes do denominador da função geradora para um autovalor da matriz de transição do sistema dinâmico.
@@ -26,10 +32,10 @@ Assim, temos sabemos como mapear todas as raízes do denominador da função ger
 Esse mapeamento se torna ainda mais interessante quando percebemos que
 
 \begin{align*}
-    R_1 R_2 &= \frac{\alpha + \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \cdot \frac{\alpha - \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \\
-            &= \frac{\alpha^2 - (\alpha^2 + 4 \beta)}{4\beta^2} \\
-            &= \frac{-4 \beta}{4\beta^2} \\
-    R_1 R_2 &= \frac{-1}{\beta} 
+    R_1 R_2 &= \frac{\alpha + \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \cdot \frac{\alpha - \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} && \text{Definição de } R_i\\
+            &= \frac{\alpha^2 - (\alpha^2 + 4 \beta)}{4\beta^2} && \text{Produto notável} \\
+            &= \frac{-4 \beta}{4\beta^2} && \text{Álgebra} \\
+    R_1 R_2 &= \frac{-1}{\beta} && \text{Álgebra}
 \end{align*}
 
 Assim, concluímos que
@@ -49,12 +55,12 @@ Agora podemos começar o método das frações parciais.
 
 \begin{align*}
     A(x) = \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} 
-        &= \frac{c + (d - \alpha c)x}{(\frac{1}{\lambda_1}-x)(\frac{1}{\lambda_2}-x)} \\
-        &= \frac{c + (d - \alpha c)x}{\frac{1}{\lambda_1}{\frac{1}{\lambda_2}(1-\lambda_1 x)(1-\lambda_2 x)}} \\
-        &= \lambda_1 \lambda_2 \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} \\
-        &= - \beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x))} \\
+        &= \frac{c + (d - \alpha c)x}{(\frac{1}{\lambda_1}-x)(\frac{1}{\lambda_2}-x)} && \text{Fatoração do denominador}\\
+        &= \frac{c + (d - \alpha c)x}{\frac{1}{\lambda_1}{\frac{1}{\lambda_2}(1-\lambda_1 x)(1-\lambda_2 x)}} && \text{Termos em evidência} \\
+        &= \lambda_1 \lambda_2 \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} && \text{Divisão por fração} \\
+        &= - \beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x))} && R_1R_2 = \frac{-1}{\beta} \land \lambda_i = \frac{1}{R_j}\\
         - \beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
-        &= - \beta \left( \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} \right) \\
+        &= - \beta \left( \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} \right) && \text{Frações parciais}\\
 \end{align*} 
 
 Note que na direita temos duas funções geradoras notáveis: $\frac{1}{1-cx}$ é a sequência das potências de $c$! Portanto, encontramos a fórmula fechada dessa recursão!
@@ -69,12 +75,12 @@ No entanto, ainda não conhecemos os coeficientes, e, além disso, para ver melh
 
 \begin{align*}
     \frac{A(x)}{-\beta} = \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
-        &= \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} \\
+        &= \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} && \text{Divisão por } -\beta \\
         c + (d - \alpha c)x
-        &= l_1(1-\lambda_2x) + l_2(1-\lambda_1x) \\
-        &= l_1-l_1\lambda_2x + l_2-l_2\lambda_1x \\
+        &= l_1(1-\lambda_2x) + l_2(1-\lambda_1x) && \text{Divisão pelo denominador }\\
+        &= l_1-l_1\lambda_2x + l_2-l_2\lambda_1x && \text{Distributiva}\\
         c + (d - \alpha c)x 
-        &= l_1 + l_2 + (-l_2\lambda_1 -l_1\lambda_2)
+        &= l_1 + l_2 + (-l_2\lambda_1 -l_1\lambda_2)x && \text{Distributiva por } x
 \end{align*}
 
 Dessa forma, chegamos no seguinte sistema linear
@@ -89,12 +95,12 @@ Dessa forma, chegamos no seguinte sistema linear
 Note que podemos transformar a segunda igualdade de forma que
 
 \begin{align*}
-    d - \alpha c &= -l_2\lambda_1 -l_1\lambda_2 \\
-    d - \alpha (l_1 + l_2) &= -l_2\lambda_1 -l_1\lambda_2 \\
-    d &= -l_2\lambda_1 -l_1\lambda_2 + \alpha (l_1 + l_2) \\
-      &= -l_2\lambda_1 -l_1\lambda_2 + \alpha l_1 + \alpha l_2 \\
-      &= l_2(-\lambda_1 + \alpha) + l_1(-\lambda_2 + \alpha)  && \text{Como } \lambda_1 + \lambda_2 = \alpha \\
-    d &= l_2\lambda_2 + l_1\lambda_1
+    d - \alpha c &= -l_2\lambda_1 -l_1\lambda_2 && \text{Eq. 2}\\
+    d - \alpha (l_1 + l_2) &= -l_2\lambda_1 -l_1\lambda_2 && \text{Eq. 1}\\
+    d &= -l_2\lambda_1 -l_1\lambda_2 + \alpha (l_1 + l_2) && \text{Soma dos dois lados}\\
+      &= -l_2\lambda_1 -l_1\lambda_2 + \alpha l_1 + \alpha l_2 && \text{Distributiva}\\
+      &= l_2(-\lambda_1 + \alpha) + l_1(-\lambda_2 + \alpha)  && \text{Distributiva} \\
+    d &= l_2\lambda_2 + l_1\lambda_1 && \lambda_1 + \lambda_2 = \alpha
 \end{align*}
 
 Dessa forma, o sistema se torna
