@@ -1,0 +1,168 @@
+
+Considere a recorrência linear definida como
+\begin{align*}
+  f(n) = \alpha f(n-1) + \beta f(n-2), \\
+  f(0) = c, \\
+  f(1) = d.
+\end{align*}
+
+Considerando o método de obtenção de fórmulas fechadas usando diagonalização, reescrevemos esse sistema como
+\[
+  \underbrace{\begin{bmatrix}
+    f(n-1) \\
+    f(n)
+  \end{bmatrix}}_{f^{(n)}}
+  =
+  \underbrace{\begin{bmatrix}
+    0 & 1 \\
+    \beta & \alpha
+  \end{bmatrix}}_{A}
+  \underbrace{\begin{bmatrix}
+    f(n-2) \\
+    f(n-1)
+  \end{bmatrix}}_{f^{(n-1)}},
+  \quad
+  \text{ com }
+  f^{(0)}
+  =
+  \begin{bmatrix}
+    c \\
+    d
+  \end{bmatrix}
+\]
+para $n \geq 2$.
+
+Considerando que $f^{(n)} = A f^{(n-1)}$, temos que $f^{(n)} = A^{n} f^{(0)}$.
+
+Começamos diagonalizando essa matriz $A$ calculando seus autovalores e autovetores. Para encontrar seus autovalores, pela definição de autovalor:
+\begin{calcproof}[.]
+  \start{Av = \lambda v}
+  \step[\calciff]{Álgebra}{
+    Av - \lambda I v = \bar{0}
+  }
+  \step[\calciff]{Distributividade}{
+    (A - \lambda I) v = \bar{0}
+  }
+  \step[\calciff]{Teorema da Matriz Inversível}{
+    \det{A - \lambda I} = 0
+  }
+\end{calcproof}
+
+Com isso, considerando nossa matriz $A$, obtemos:
+\begin{calcproof}[.]
+  \start{\det{A - \lambda I} = 0}
+  \step[\calciff]{Definição ($A$) e Álgebra}{
+    \det{\begin{bmatrix}
+        - \lambda & 1 \\
+        \beta & \alpha - \lambda
+      \end{bmatrix}} = 0
+  }
+  \step[\calciff]{Cálculo do determinante $2 \times 2$ e Álgebra}{
+    \lambda^2 - \alpha \lambda - \beta = 0
+  }
+  \step[\calciff]{Bhaskara}{
+    \lambda = \dfrac{\alpha \pm \sqrt{\alpha^2 + 4\beta}}{2}
+  }
+\end{calcproof}
+
+Para calcular os autovetores, fazemos:
+\begin{calcproof}[.]
+  \start{(A - \lambda I)v = \bar{0}}
+  \step[\calciff]{Definição ($A$) e Álgebra}{
+    \begin{bmatrix}
+      -\lambda & 1 \\
+      \beta & \alpha - \lambda
+    \end{bmatrix}
+    \begin{bmatrix}
+      v_1 \\
+      v_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      0 \\
+      0
+    \end{bmatrix}
+  }
+  \step[\calciff]{Considerando a equação de cima (a de baixo é redundante)}{
+    v_2 - \lambda v_1 = 0
+  }
+  \step[\calciff]{Álgebra}{
+    v = \begin{bmatrix}
+      1 \\ \lambda
+    \end{bmatrix}
+  }
+\end{calcproof}
+
+Dessa forma, obtemos
+\[
+  A
+  =
+  \begin{bmatrix}
+    1 & 1 \\
+    \lambda_1 & \lambda_2
+  \end{bmatrix}
+  \begin{bmatrix}
+    \lambda_1 & 0 \\
+    0 & \lambda_2
+  \end{bmatrix}
+  \dfrac{1}{\lambda_2 - \lambda_1}
+  \begin{bmatrix}
+    \lambda_2 & -1 \\
+    - \lambda_1 & 1
+  \end{bmatrix},
+\]
+considerando que a inversa de $V$ foi obtida simplesmente pela fórmula da inversa da matriz $2 \times 2$.
+
+Como $f^{(n)} = A^{n} f^{(0)}$, temos que $f^{(n)} = V D^{n} V^{-1} f^{(0)}$. Com isso, temos
+\[
+  \underbrace{\begin{bmatrix}
+    f(n-1) \\
+    f(n)
+  \end{bmatrix}}_{f^{(n)}}
+  =
+  \underbrace{\begin{bmatrix}
+    1 & 1 \\
+    \lambda_1 & \lambda_2
+  \end{bmatrix}}_{V}
+  \underbrace{\begin{bmatrix}
+    \lambda_1 & 0 \\
+    0 & \lambda_2
+  \end{bmatrix}^n}_{D^{n}}
+  \dfrac{1}{\lambda_2 - \lambda_1}
+  \underbrace{\begin{bmatrix}
+    \lambda_2 & -1 \\
+    - \lambda_1 & 1
+  \end{bmatrix}}_{V^{-1}}
+  \underbrace{\begin{bmatrix}
+    c \\
+    d
+  \end{bmatrix}}_{f^{(0)}}.
+\]
+
+Sabendo que
+\[
+  \begin{bmatrix}
+    \lambda_1 & 0 \\
+    0 & \lambda_2
+  \end{bmatrix}^n
+  =
+  \begin{bmatrix}
+    \lambda_1^n & 0 \\
+    0 & \lambda_2^n
+  \end{bmatrix},
+\]
+podemos finalmente calcular $f^{(n)}$ simplesmente multiplicando as matrizes $V D V^{-1}$ e o vetor $f^{(0)}$. Olhando apenas para o segundo índice do vetor $f^{(n)}$ (pois queremos a fórmula fechada de $f(n)$, e não de $f^{(n-1)}$), obtemos
+\[
+  f(n) = \dfrac{\lambda_1^n (c \lambda_2 - d) + \lambda_2^n (d - c \lambda_1)}{\lambda_2 - \lambda_1},
+\]
+obtendo assim uma fórmula fechada para $f(n)$ que não depende dos valores anteriores da sequência.
+
+Vale verificar que, para o caso da função de fibonacci, onde temos $\lambda_1 = \phi$, $\lambda_2 = \psi$, $c=0$ e $d=1$, substituindo na fórmula fechada geral para $f(n)$, obtemos
+\[
+  f(n) = \dfrac{\phi^n (0 \psi - 1) + \psi^n (1 - 0 \phi)}{\psi - \phi},
+\]
+que é o mesmo que
+\[
+  f(n) = \dfrac{\phi^n - \psi^n}{\phi - \psi},
+\]
+que é conhecida como a \emph{fórmula de Binet}, que cálcula o $n$-ésimo termo da sequência de Fibonacci.
