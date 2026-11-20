@@ -16,8 +16,23 @@
 \usepackage{hyperref, tocbibind}
 \usepackage[titles]{tocloft}
 
-% Math related packages
+% Math related packages and commands
 \usepackage{amsmath, mathdots, scalerel, mathtools, amssymb}
+\renewcommand{\det}[1]{\mathrm{det}\left( #1 \right)}
+\newcommand{\calciff}{\Updownarrow}
+
+% Calculation related packages and commands
+\usepackage{environ}
+\NewEnviron{calcproof}[1][.]{
+  \begin{align*}
+    \BODY \text{#1}
+  \end{align*}
+}
+\newcommand{\start}[1]{& #1}
+\newcommand{\step}[3][\Updownarrow]{
+  \\[0.3cm] #1 \quad & \left\{ \begin{tabular}{@{}c@{}} #2 \end{tabular} \right\} \\[0.3cm]
+  & #3
+}
 
 % Document information
 \title{Diagonalização vs. Função Geradora \\ para Obtenção de Fórmulas Fechadas \\ no caso 2x2}
