@@ -11,17 +11,18 @@ podemos convertê-la em uma função geradora da seguinte forma
   a_{n+2} &= \alpha a_{n+1} + \beta a_{n} \\
   a &= c \prec (\alpha a + (d - \alpha c) \prec (\beta a)) && \text{Conversão para notação de streams} \\
   A(x) &= c + x(\alpha A(x) + d - \alpha c + x(\beta A(x))) && \text{Conversão para função geradora recursiva}\\
-      &= c + (\alpha A(x) + d - \alpha c)x + \beta A(x)x^2 && \text{Distributiva}\\
+  A(x) &= c + (\alpha A(x) + d - \alpha c)x + \beta A(x)x^2 && \text{Distributiva}\\
   A(x) - \alpha A(x) - \beta A(x)x^2 &= c + (d - \alpha c)x && \text{Soma dos dois lados} \\
   A(x)(1 - \alpha x - \beta x^2) &= c + (d - \alpha c)x && \text{Distributiva} \\
   A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} && \text{Divisão dos dois lados}
 \end{align*}
 
 Com isso, sabemos encontrar a função geradora de qualquer recurção de ordem 2. Agora, vamos nos encaminhar para o método das frações parciais. Primeiro, temos que encontrar as raízes $R_1$ e $R_2$ da polinômio de segundo grau do denominador da função geradora. Aplicando a fórmula de Bhaskara, encontramos
+\[
+  R_1, R_2 = \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}
+\]
 
-$$R_1, R_2 = \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}$$
-
-A princípio, esse resultando não parece muito interessante. No entanto, podemos notar que, quando comparamos as raízes com os autovalores encontrados pelo método da diagonalização, temos
+A princípio, esse resultando não parece muito interessante. No entanto, podemos notar que, quando comparamos as raízes com os autovalores encontrados pelo método da diagonalização, temos:
 
 \begin{align*}
   R_i &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} && \text{Bhaskara}\\
@@ -41,16 +42,15 @@ Esse mapeamento se torna ainda mais interessante quando percebemos que
 \end{align*}
 
 Assim, concluímos que
-
-$$ R_i = \lambda_i R_1 R_2. $$
+\[
+  R_i = \lambda_i R_1 R_2.
+\]
 
 Dessa forma,
-
 \begin{gather*}
-  R_1 = \frac{1}{\lambda_2} \\
-  R_2 = \frac{1}{\lambda_1}
+  R_1 = \frac{1}{\lambda_2}, \\
+  R_2 = \frac{1}{\lambda_1},
 \end{gather*}
-
 ou seja, as raízes são o inverso dos autovalores!
 
 Agora podemos começar o método das frações parciais.
