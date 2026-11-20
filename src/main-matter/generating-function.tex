@@ -1,18 +1,20 @@
 Vamos tentar, de maneira genérica, descobrir a função geradora para qualquer recurção de ordem 2.
 
 Começando da seguinte recurção genérica,
-\begin{gather*}
-    a_{n+2} = \alpha a_{n+1} + \beta a_{n}\\  a_0 = c\\ a_1 = d 
-\end{gather*}
+\begin{align*}
+  a_{n+2} &= \alpha a_{n+1} + \beta a_{n}, \\
+  a_0 &= c, \\
+  a_1 &= d,
+\end{align*}
 podemos convertê-la em uma função geradora da seguinte forma
 \begin{align*}
-    a_{n+2} &= \alpha a_{n+1} + \beta a_{n} \\
-    a &= c \prec (\alpha a + (d - \alpha c) \prec (\beta a)) && \text{Conversão para notação de streams} \\
-    A(x) &= c + x(\alpha A(x) + d - \alpha c + x(\beta A(x))) && \text{Conversão para função geradora recursiva}\\
-        &= c + (\alpha A(x) + d - \alpha c)x + \beta A(x)x^2 && \text{Distributiva}\\
-    A(x) - \alpha A(x) - \beta A(x)x^2 &= c + (d - \alpha c)x && \text{Soma dos dois lados} \\
-    A(x)(1 - \alpha x - \beta x^2) &= c + (d - \alpha c)x && \text{Distributiva} \\
-    A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} && \text{Divisão dos dois lados}
+  a_{n+2} &= \alpha a_{n+1} + \beta a_{n} \\
+  a &= c \prec (\alpha a + (d - \alpha c) \prec (\beta a)) && \text{Conversão para notação de streams} \\
+  A(x) &= c + x(\alpha A(x) + d - \alpha c + x(\beta A(x))) && \text{Conversão para função geradora recursiva}\\
+      &= c + (\alpha A(x) + d - \alpha c)x + \beta A(x)x^2 && \text{Distributiva}\\
+  A(x) - \alpha A(x) - \beta A(x)x^2 &= c + (d - \alpha c)x && \text{Soma dos dois lados} \\
+  A(x)(1 - \alpha x - \beta x^2) &= c + (d - \alpha c)x && \text{Distributiva} \\
+  A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} && \text{Divisão dos dois lados}
 \end{align*}
 
 Com isso, sabemos encontrar a função geradora de qualquer recurção de ordem 2. Agora, vamos nos encaminhar para o método das frações parciais. Primeiro, temos que encontrar as raízes $R_1$ e $R_2$ da polinômio de segundo grau do denominador da função geradora. Aplicando a fórmula de Bhaskara, encontramos
@@ -22,9 +24,9 @@ $$R_1, R_2 = \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}$$
 A princípio, esse resultando não parece muito interessante. No entanto, podemos notar que, quando comparamos as raízes com os autovalores encontrados pelo método da diagonalização, temos
 
 \begin{align*}
-    R_i &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} && \text{Bhaskara}\\
-        &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{2 } \cdot \frac{1}{-\beta} && \text{Termo em evidência}\\
-    R_i &= \frac{\lambda_i}{-\beta} && \text{Definição de } \lambda_i   
+  R_i &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} && \text{Bhaskara}\\
+  R_i &= \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{2 } \cdot \frac{1}{-\beta} && \text{Termo em evidência}\\
+  R_i &= \frac{\lambda_i}{-\beta} && \text{Definição de } \lambda_i
 \end{align*}
 
 Assim, temos sabemos como mapear todas as raízes do denominador da função geradora para um autovalor da matriz de transição do sistema dinâmico.
@@ -32,10 +34,10 @@ Assim, temos sabemos como mapear todas as raízes do denominador da função ger
 Esse mapeamento se torna ainda mais interessante quando percebemos que
 
 \begin{align*}
-    R_1 R_2 &= \frac{\alpha + \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \cdot \frac{\alpha - \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} && \text{Definição de } R_i\\
-            &= \frac{\alpha^2 - (\alpha^2 + 4 \beta)}{4\beta^2} && \text{Produto notável} \\
-            &= \frac{-4 \beta}{4\beta^2} && \text{Álgebra} \\
-    R_1 R_2 &= \frac{-1}{\beta} && \text{Álgebra}
+  R_1 R_2 &= \frac{\alpha + \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \cdot \frac{\alpha - \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} && \text{Definição de } R_i\\
+  R_1 R_2 &= \frac{\alpha^2 - (\alpha^2 + 4 \beta)}{4\beta^2} && \text{Produto notável} \\
+  R_1 R_2 &= \frac{-4 \beta}{4\beta^2} && \text{Álgebra} \\
+  R_1 R_2 &= \frac{-1}{\beta} && \text{Álgebra}
 \end{align*}
 
 Assim, concluímos que
@@ -45,8 +47,8 @@ $$ R_i = \lambda_i R_1 R_2. $$
 Dessa forma,
 
 \begin{gather*}
-    R_1 = \frac{1}{\lambda_2} \\
-    R_2 = \frac{1}{\lambda_1}
+  R_1 = \frac{1}{\lambda_2} \\
+  R_2 = \frac{1}{\lambda_1}
 \end{gather*}
 
 ou seja, as raízes são o inverso dos autovalores!
@@ -54,42 +56,49 @@ ou seja, as raízes são o inverso dos autovalores!
 Agora podemos começar o método das frações parciais.
 
 \begin{align*}
-    A(x) = \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} 
-        &= \frac{c + (d - \alpha c)x}{(\frac{1}{\lambda_1}-x)(\frac{1}{\lambda_2}-x)} && \text{Fatoração do denominador}\\
-        &= \frac{c + (d - \alpha c)x}{\frac{1}{\lambda_1}{\frac{1}{\lambda_2}(1-\lambda_1 x)(1-\lambda_2 x)}} && \text{Termos em evidência} \\
-        &= \lambda_1 \lambda_2 \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} && \text{Divisão por fração} \\
-        &= - \beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x))} && R_1R_2 = \frac{-1}{\beta} \land \lambda_i = \frac{1}{R_j}\\
-        - \beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
-        &= - \beta \left( \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} \right) && \text{Frações parciais}\\
-\end{align*} 
+  A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} \\
+  A(x) &= \frac{c + (d - \alpha c)x}{(\frac{1}{\lambda_1}-x)(\frac{1}{\lambda_2}-x)} && \text{Fatoração do denominador}\\
+  A(x) &= \frac{c + (d - \alpha c)x}{\frac{1}{\lambda_1}{\frac{1}{\lambda_2}(1-\lambda_1 x)(1-\lambda_2 x)}} && \text{Termos em evidência} \\
+  A(x) &= \lambda_1 \lambda_2 \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} && \text{Divisão por fração} \\
+  A(x) &= -\beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} && R_1R_2 = \frac{-1}{\beta} \land \lambda_i = \frac{1}{R_j} \\
+  A(x) &= -\beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} \\
+  A(x) &= -\beta \left( \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} \right) && \text{Frações parciais}
+\end{align*}
 
 Note que na direita temos duas funções geradoras notáveis: $\frac{1}{1-cx}$ é a sequência das potências de $c$! Portanto, encontramos a fórmula fechada dessa recursão!
 
-$$A(x) = -\beta (l_1 \lambda_1^n + l_2 \lambda_2^n)$$
+\[
+  A(x) = -\beta (l_1 \lambda_1^n + l_2 \lambda_2^n),
+\]
+ou, escrito de outra forma,
+\[
+  A(x) = k_1 \lambda_1^n + k_2 \lambda_2^n.
+\]
 
-Ou, escrito de outra forma,
-
-$$A(x) = k_1 \lambda_1^n + k_2 \lambda_2^n$$
-
-No entanto, ainda não conhecemos os coeficientes, e, além disso, para ver melhor a relação com o método da diagonalização, vamos ter que continuar massageando o método das frações parciais
+No entanto, ainda não conhecemos os coeficientes, e, além disso, para ver melhor a relação com o método da diagonalização, vamos ter que continuar massageando o método das frações parciais:
 
 \begin{align*}
-    \frac{A(x)}{-\beta} = \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
-        &= \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} && \text{Divisão por } -\beta \\
-        c + (d - \alpha c)x
-        &= l_1(1-\lambda_2x) + l_2(1-\lambda_1x) && \text{Divisão pelo denominador }\\
-        &= l_1-l_1\lambda_2x + l_2-l_2\lambda_1x && \text{Distributiva}\\
-        c + (d - \alpha c)x 
-        &= l_1 + l_2 + (-l_2\lambda_1 -l_1\lambda_2)x && \text{Distributiva por } x
+  \frac{A(x)}{-\beta}
+  &= \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
+  && \text{Divisão por } -\beta \\[6pt]
+  &= \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x}
+  && \text{Frações parciais} \\[6pt]
+  c + (d - \alpha c)x
+  &= l_1(1-\lambda_2x) + l_2(1-\lambda_1x)
+  && \text{Multiplicação pelo denominador comum} \\[6pt]
+  &= l_1-l_1\lambda_2x + l_2-l_2\lambda_1x
+  && \text{Distributiva} \\[6pt]
+  &= (l_1+l_2) + (-l_1\lambda_2-l_2\lambda_1)x
+  && \text{Agrupamento dos termos}
 \end{align*}
 
-Dessa forma, chegamos no seguinte sistema linear
+Dessa forma, chegamos no seguinte sistema linear:
 
 \begin{gather*}
-    \begin{cases}
-        c &= l_1 + l_2\\
-        d - \alpha c &= -l_2\lambda_1 -l_1\lambda_2
-    \end{cases}
+  \begin{cases}
+    c &= l_1 + l_2\\
+    d - \alpha c &= -l_2\lambda_1 -l_1\lambda_2
+  \end{cases}
 \end{gather*}
 
 Note que podemos transformar a segunda igualdade de forma que
@@ -106,10 +115,9 @@ Note que podemos transformar a segunda igualdade de forma que
 Dessa forma, o sistema se torna
 
 \begin{gather*}
-    \begin{cases}
-        c &= l_1 + l_2 \\
-    d &= l_2\lambda_2 + l_1\lambda_1
-    \end{cases}
+  \begin{cases}
+    c &= l_1 + l_2, \\
+    d &= l_2\lambda_2 + l_1\lambda_1,
+  \end{cases}
 \end{gather*}
-
 que é idêntico ao sistema da diagonalização!
