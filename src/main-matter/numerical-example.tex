@@ -1,0 +1,187 @@
+
+Para ver os dois métodos funcionando com números, considere a recorrência
+\begin{align*}
+  f(n) = 2 f(n-1) + 3 f(n-2), \\
+  f(0) = 1, \\
+  f(1) = 4,
+\end{align*}
+ou seja, $\alpha = 2$, $\beta = 3$, $c = 1$ e $d = 4$. Seus primeiros termos são $1, 4, 11, 34, 101, 304, 911, \dots$
+
+Os valores foram escolhidos para que as contas fiquem limpas: $\beta \neq 0$ (a recorrência é realmente de ordem 2), $\alpha^2 + 4\beta = 16 \neq 0$ (dois autovalores distintos) e, como $16$ é um quadrado perfeito, os autovalores são inteiros. Além disso, $d \neq c \lambda_1$ e $d \neq c \lambda_2$, de modo que nenhuma coordenada de $\bar{f}^{(0)}$ se anula e as duas componentes aparecem na resposta.
+
+\section{Pela diagonalização}
+
+A matriz do sistema é
+\[
+  A =
+  \begin{bmatrix}
+    0 & 1 \\
+    3 & 2
+  \end{bmatrix},
+  \quad
+  f^{(0)} =
+  \begin{bmatrix}
+    1 \\
+    4
+  \end{bmatrix}.
+\]
+
+Calculando os autovalores:
+\begin{calcproof}[.]
+  \start{\det{A - \lambda I} = 0}
+  \step[\calciff]{Definição ($A$) e Álgebra}{
+    \det{\begin{bmatrix}
+        - \lambda & 1 \\
+        3 & 2 - \lambda
+      \end{bmatrix}} = 0
+  }
+  \step[\calciff]{Cálculo do determinante $2 \times 2$ e Álgebra}{
+    \lambda^2 - 2 \lambda - 3 = 0
+  }
+  \step[\calciff]{Fatoração}{
+    (\lambda - 3)(\lambda + 1) = 0
+  }
+  \step[\calciff]{Produto nulo}{
+    \lambda_1 = 3 \ \lor \ \lambda_2 = -1
+  }
+\end{calcproof}
+
+Pelo capítulo da diagonalização, os autovetores são $v_i = \begin{bmatrix} 1 \\ \lambda_i \end{bmatrix}$, então
+\[
+  V =
+  \begin{bmatrix}
+    1 & 1 \\
+    3 & -1
+  \end{bmatrix},
+  \quad
+  V^{-1} = \frac{1}{\lambda_2 - \lambda_1}
+  \begin{bmatrix}
+    \lambda_2 & -1 \\
+    -\lambda_1 & 1
+  \end{bmatrix}
+  = \frac{1}{-4}
+  \begin{bmatrix}
+    -1 & -1 \\
+    -3 & 1
+  \end{bmatrix}
+  = \frac{1}{4}
+  \begin{bmatrix}
+    1 & 1 \\
+    3 & -1
+  \end{bmatrix}.
+\]
+
+As coordenadas do estado inicial na base de autovetores são
+\[
+  \bar{f}^{(0)} = V^{-1} f^{(0)}
+  = \frac{1}{4}
+  \begin{bmatrix}
+    1 & 1 \\
+    3 & -1
+  \end{bmatrix}
+  \begin{bmatrix}
+    1 \\
+    4
+  \end{bmatrix}
+  = \frac{1}{4}
+  \begin{bmatrix}
+    5 \\
+    -1
+  \end{bmatrix},
+\]
+isto é, $\bar{f}^{(0)}_1 = \frac{5}{4}$ e $\bar{f}^{(0)}_2 = -\frac{1}{4}$. Como $f^{(n)} = V D^n V^{-1} f^{(0)} = \bar{f}^{(0)}_1 \lambda_1^n v_1 + \bar{f}^{(0)}_2 \lambda_2^n v_2$, lendo a primeira componente:
+\[
+  f(n) = \frac{5}{4} \cdot 3^n - \frac{1}{4} (-1)^n = \frac{5 \cdot 3^n - (-1)^n}{4}.
+\]
+
+O mesmo resultado sai substituindo direto na fórmula geral do capítulo da diagonalização:
+\[
+  f(n) = \frac{3^n (1 \cdot (-1) - 4) + (-1)^n (4 - 1 \cdot 3)}{-1 - 3} = \frac{-5 \cdot 3^n + (-1)^n}{-4} = \frac{5 \cdot 3^n - (-1)^n}{4}.
+\]
+
+\section{Pela função geradora}
+
+Em notação de streams, a recorrência é
+\[
+  a = 1 \prec \big( 2a + (4 - 2) \prec (3a) \big).
+\]
+Convertendo para função geradora:
+\begin{calcproof}[.]
+  \start{A(x) = 1 + x \big( 2 A(x) + 2 + x \cdot 3 A(x) \big)}
+  \step[\calciff]{Distributiva}{
+    A(x) = 1 + 2x + 2x A(x) + 3x^2 A(x)
+  }
+  \step[\calciff]{Subtração dos dois lados e Distributiva}{
+    A(x) (1 - 2x - 3x^2) = 1 + 2x
+  }
+  \step[\calciff]{Divisão dos dois lados}{
+    A(x) = \frac{1 + 2x}{1 - 2x - 3x^2}
+  }
+\end{calcproof}
+O numerador é $c + (d - \alpha c)x = 1 + (4 - 2)x = 1 + 2x$, como previsto pela fórmula geral.
+
+As raízes do denominador são
+\[
+  R_i = \frac{\lambda_i}{-\beta}:
+  \quad
+  R_1 = \frac{3}{-3} = -1,
+  \quad
+  R_2 = \frac{-1}{-3} = \frac{1}{3},
+\]
+e de fato $1 - 2x - 3x^2 = (1 - 3x)(1 + x)$ se anula em $x = -1$ e em $x = \frac{1}{3}$. Valem as relações do capítulo anterior: $R_1 R_2 = -\frac{1}{3} = -\frac{1}{\beta}$, $R_1 = \frac{1}{\lambda_2}$ e $R_2 = \frac{1}{\lambda_1}$.
+
+Fazendo as frações parciais:
+\begin{calcproof}[.]
+  \start{\frac{1 + 2x}{(1 - 3x)(1 + x)} = \frac{l_1}{1 - 3x} + \frac{l_2}{1 + x}}
+  \step[\calciff]{Multiplicação pelo denominador comum}{
+    1 + 2x = l_1 (1 + x) + l_2 (1 - 3x)
+  }
+  \step[\calciff]{Igualdade de polinômios (coeficientes de $x^0$ e $x^1$)}{
+    \begin{cases}
+      l_1 + l_2 = 1 \\
+      l_1 - 3 l_2 = 2
+    \end{cases}
+  }
+  \step[\calciff]{Subtração das equações}{
+    l_2 = -\frac{1}{4} \ \land \ l_1 = \frac{5}{4}
+  }
+\end{calcproof}
+
+Os coeficientes são as mesmas coordenadas $\bar{f}^{(0)}_1, \bar{f}^{(0)}_2$ da diagonalização. Isso não é coincidência: somando duas vezes a primeira equação à segunda, ela vira $3 l_1 - l_2 = 4$, e o sistema fica
+\[
+  \begin{bmatrix}
+    1 & 1 \\
+    3 & -1
+  \end{bmatrix}
+  \begin{bmatrix}
+    l_1 \\
+    l_2
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    1 \\
+    4
+  \end{bmatrix},
+\]
+que é exatamente $V l = f^{(0)}$, o mesmo sistema que define $\bar{f}^{(0)}$.
+
+Por fim, como cada fração é uma série geométrica,
+\[
+  A(x) = \frac{5}{4} \sum_{n \geq 0} 3^n x^n - \frac{1}{4} \sum_{n \geq 0} (-1)^n x^n
+  \quad \Longrightarrow \quad
+  f(n) = \frac{5 \cdot 3^n - (-1)^n}{4}.
+\]
+
+\section{Conferindo}
+
+\begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{c|ccccccc}
+    $n$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+    \hline
+    recorrência & 1 & 4 & 11 & 34 & 101 & 304 & 911 \\
+    $\frac{5 \cdot 3^n - (-1)^n}{4}$ & 1 & 4 & 11 & 34 & 101 & 304 & 911
+  \end{tabular}
+\end{center}
+
+Os dois métodos chegam à mesma fórmula, passando pelo mesmo polinômio (espelhado), pelas mesmas raízes (invertidas) e pelo mesmo sistema linear.
