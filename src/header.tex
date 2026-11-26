@@ -18,11 +18,11 @@
 
 % Math related packages and commands
 \usepackage{amsmath, mathdots, scalerel, mathtools, amssymb}
+\renewcommand{\det}[1]{\mathrm{det}\left( #1 \right)}
+\newcommand{\calciff}{\Updownarrow}
 
 % Table related packages
 \usepackage{booktabs, array, pdflscape}
-\renewcommand{\det}[1]{\mathrm{det}\left( #1 \right)}
-\newcommand{\calciff}{\Updownarrow}
 
 % Calculation related packages and commands
 \usepackage{environ}
@@ -37,6 +37,11 @@
   & #3
 }
 
+% References related packages
+\usepackage[backend=biber]{biblatex}
+\usepackage{csquotes}
+\addbibresource{repertoire.bib}
+
 % Document information
 \title{Diagonalização vs. Função Geradora \\ para Obtenção de Fórmulas Fechadas \\ no caso 2x2}
 \author{
@@ -46,4 +51,3 @@
   \end{tabular}
 }
 \date{\vspace{3cm}\today}
-
