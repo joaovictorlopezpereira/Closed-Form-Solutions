@@ -9,8 +9,8 @@ Considere a recorrência linear definida como
 Considerando o método de obtenção de fórmulas fechadas usando diagonalização, reescrevemos esse sistema como
 \[
   \underbrace{\begin{bmatrix}
-    f(n-1) \\
-    f(n)
+    f(n) \\
+    f(n+1)
   \end{bmatrix}}_{f^{(n)}}
   =
   \underbrace{\begin{bmatrix}
@@ -18,8 +18,8 @@ Considerando o método de obtenção de fórmulas fechadas usando diagonalizaç�
     \beta & \alpha
   \end{bmatrix}}_{A}
   \underbrace{\begin{bmatrix}
-    f(n-2) \\
-    f(n-1)
+    f(n-1) \\
+    f(n)
   \end{bmatrix}}_{f^{(n-1)}},
   \quad
   \text{ com }
@@ -116,8 +116,8 @@ considerando que a inversa de $V$ foi obtida simplesmente pela fórmula da inver
 Como $f^{(n)} = A^{n} f^{(0)}$, temos que $f^{(n)} = V D^{n} V^{-1} f^{(0)}$. Com isso, temos
 \[
   \underbrace{\begin{bmatrix}
-    f(n-1) \\
-    f(n)
+    f(n) \\
+    f(n+1)
   \end{bmatrix}}_{f^{(n)}}
   =
   \underbrace{\begin{bmatrix}
@@ -151,18 +151,18 @@ Sabendo que
     0 & \lambda_2^n
   \end{bmatrix},
 \]
-podemos finalmente calcular $f^{(n)}$ simplesmente multiplicando as matrizes $V D V^{-1}$ e o vetor $f^{(0)}$. Olhando apenas para o segundo índice do vetor $f^{(n)}$ (pois queremos a fórmula fechada de $f(n)$, e não de $f^{(n-1)}$), obtemos
+podemos finalmente calcular $f^{(n)}$ simplesmente multiplicando as matrizes $V D V^{-1}$ e o vetor $f^{(0)}$. Olhando apenas para o primeiro componente do vetor $f^{(n)}$ (pois queremos a fórmula fechada de $f(n)$, e não de $f^{(n+1)}$), obtemos
 \[
   f(n) = \dfrac{\lambda_1^n (c \lambda_2 - d) + \lambda_2^n (d - c \lambda_1)}{\lambda_2 - \lambda_1},
 \]
 obtendo assim uma fórmula fechada para $f(n)$ que não depende dos valores anteriores da sequência.
 
-Vale verificar que, para o caso da função de fibonacci, onde temos $\lambda_1 = \phi$, $\lambda_2 = \psi$, $c=0$ e $d=1$, substituindo na fórmula fechada geral para $f(n)$, obtemos
+Vale verificar que, para o caso da função de fibonacci, onde temos $\lambda_1 = \varphi$, $\lambda_2 = \psi$, $c=0$ e $d=1$, substituindo na fórmula fechada geral para $f(n)$, obtemos
 \[
-  f(n) = \dfrac{\phi^n (0 \psi - 1) + \psi^n (1 - 0 \phi)}{\psi - \phi},
+  f(n) = \dfrac{\varphi^n (0 \psi - 1) + \psi^n (1 - 0 \varphi)}{\psi - \varphi},
 \]
 que é o mesmo que
 \[
-  f(n) = \dfrac{\phi^n - \psi^n}{\phi - \psi},
+  f(n) = \dfrac{\varphi^n - \psi^n}{\varphi - \psi},
 \]
-que é conhecida como a \emph{fórmula de Binet}, que cálcula o $n$-ésimo termo da sequência de Fibonacci.
+que é conhecida como a \emph{fórmula de Binet}, que cálcula o $n$-ésimo termo da sequência de Fibonacci por meio de uma fórmula fechada, assim como queríamos.
