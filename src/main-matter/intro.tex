@@ -1,10 +1,10 @@
 
-Sequências numéricas são listas finitas ou infinitas de números que seguem ou não alguma regra ou padrão. Podemos defini-las de múltiplas maneiras, sendo as mais usadas em sala de aula as funções geradoras, o operador \mathrm{cons} ($<$) e a definição de uma regra recursiva para a sequência.
+Sequências numéricas são listas finitas ou infinitas de números que seguem ou não alguma regra ou padrão. Podemos defini-las de múltiplas maneiras, sendo as mais usadas em sala de aula as funções geradoras, o operador $\mathrm{cons}$ ($<$) e a definição de uma regra recursiva para a sequência.
 
-A sequência de Fibonacci é uma das mais famosas da matemática, por ser usada em diversas áreas, como a biologia (no número de pétalas em flores, por tamanho) e a ciência da computação (no algoritmo de busca de Fibonacci e na \textit{heap} de Fibonacci), e por ter uma regra recursiva fácil de decorar: $F_{n+2} = F_{n+1} + F_n$, com $F_0 = 0$ e $F_1 = 1$. Também podemos defini-la por meio da função geradora
+A sequência de Fibonacci é uma das mais famosas da matemática, por ser usada em diversas áreas, como a biologia (no número de pétalas em flores, por tamanho) e a ciência da computação (no algoritmo de busca de Fibonacci e na $\textit{heap}$ de Fibonacci), e por ter uma regra recursiva fácil de decorar: $F_{n+2} = F_{n+1} + F_n$, com $F_0 = 0$ e $F_1 = 1$. Também podemos defini-la por meio da função geradora
 \[
   A(x) = \dfrac{x}{1-(x+x^2)}
 \]
-ou, usando \mathrm{cons}, por $F = 0 < (F+1 < F)$.
+ou, usando $\mathrm{cons}$, por $F = 0 < (F+1 < F)$.
 
 A diagonalização é o processo em que convertemos uma matriz quadrada em um sistema composto por matrizes, de forma que $A = V D V^{-1}$, e os vetores ou matrizes multiplicados por esse sistema são redimensionados ao longo de direções específicas. A matriz original pode ou não representar um sistema de equações lineares multivariáveis. Neste trabalho, queremos mostrar as semelhanças entre os métodos de obtenção de fórmulas fechadas por meio da diagonalização e das funções geradoras para recorrências lineares de segunda ordem.
