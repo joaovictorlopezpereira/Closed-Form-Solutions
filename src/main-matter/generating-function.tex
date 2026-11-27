@@ -12,7 +12,7 @@ podemos convertê-la em uma função geradora da seguinte forma
   a &= c \prec (\alpha a + (d - \alpha c) \prec (\beta a)) && \text{Conversão para notação de streams} \\
   A(x) &= c + x(\alpha A(x) + d - \alpha c + x(\beta A(x))) && \text{Conversão para função geradora recursiva}\\
   A(x) &= c + (\alpha A(x) + d - \alpha c)x + \beta A(x)x^2 && \text{Distributiva}\\
-  A(x) - \alpha A(x) - \beta A(x)x^2 &= c + (d - \alpha c)x && \text{Soma dos dois lados} \\
+  A(x) - \alpha A(x)x - \beta A(x)x^2 &= c + (d - \alpha c)x && \text{Soma dos dois lados} \\
   A(x)(1 - \alpha x - \beta x^2) &= c + (d - \alpha c)x && \text{Distributiva} \\
   A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} && \text{Divisão dos dois lados}
 \end{align*}
@@ -57,38 +57,30 @@ Agora podemos começar o método das frações parciais.
 
 \begin{align*}
   A(x) &= \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2} \\
-  A(x) &= \frac{c + (d - \alpha c)x}{(\frac{1}{\lambda_1}-x)(\frac{1}{\lambda_2}-x)} && \text{Fatoração do denominador}\\
-  A(x) &= \frac{c + (d - \alpha c)x}{\frac{1}{\lambda_1}{\frac{1}{\lambda_2}(1-\lambda_1 x)(1-\lambda_2 x)}} && \text{Termos em evidência} \\
-  A(x) &= \lambda_1 \lambda_2 \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} && \text{Divisão por fração} \\
-  A(x) &= -\beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} && R_1R_2 = \frac{-1}{\beta} \land \lambda_i = \frac{1}{R_j} \\
-  A(x) &= -\beta \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} \\
-  A(x) &= -\beta \left( \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x} \right) && \text{Frações parciais}
+  A(x) &= \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} && \text{Fatoração do denominador}\\
+  A(x) &=  \frac{k_1}{1-\lambda_1 x} + \frac{k_2}{1-\lambda_2 x} && \text{Frações parciais}
 \end{align*}
 
 Note que na direita temos duas funções geradoras notáveis: $\frac{1}{1-cx}$ é a sequência das potências de $c$! Portanto, encontramos a fórmula fechada dessa recursão!
 
 \[
-  A(x) = -\beta (l_1 \lambda_1^n + l_2 \lambda_2^n),
-\]
-ou, escrito de outra forma,
-\[
-  A(x) = k_1 \lambda_1^n + k_2 \lambda_2^n.
+  a_n = k_1 \lambda_1^n + k_2 \lambda_2^n,
 \]
 
 No entanto, ainda não conhecemos os coeficientes, e, além disso, para ver melhor a relação com o método da diagonalização, vamos ter que continuar massageando o método das frações parciais:
 
 \begin{align*}
-  \frac{A(x)}{-\beta}
+  A(x)
   &= \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
   && \text{Divisão por } -\beta \\[6pt]
-  &= \frac{l_1}{1-\lambda_1 x} + \frac{l_2}{1-\lambda_2 x}
+  &= \frac{k_1}{1-\lambda_1 x} + \frac{k_2}{1-\lambda_2 x}
   && \text{Frações parciais} \\[6pt]
   c + (d - \alpha c)x
-  &= l_1(1-\lambda_2x) + l_2(1-\lambda_1x)
+  &= k_1(1-\lambda_2x) + k_2(1-\lambda_1x)
   && \text{Multiplicação pelo denominador comum} \\[6pt]
-  &= l_1-l_1\lambda_2x + l_2-l_2\lambda_1x
+  &= k_1-k_1\lambda_2x + k_2-k_2\lambda_1x
   && \text{Distributiva} \\[6pt]
-  &= (l_1+l_2) + (-l_1\lambda_2-l_2\lambda_1)x
+  &= (k_1+k_2) + (-k_1\lambda_2-k_2\lambda_1)x
   && \text{Agrupamento dos termos}
 \end{align*}
 
@@ -96,28 +88,28 @@ Dessa forma, chegamos no seguinte sistema linear:
 
 \begin{gather*}
   \begin{cases}
-    c &= l_1 + l_2\\
-    d - \alpha c &= -l_2\lambda_1 -l_1\lambda_2
+    c &= k_1 + k_2\\
+    d - \alpha c &= -k_2\lambda_1 -k_1\lambda_2
   \end{cases}
 \end{gather*}
 
 Note que podemos transformar a segunda igualdade de forma que
 
 \begin{align*}
-    d - \alpha c &= -l_2\lambda_1 -l_1\lambda_2 && \text{Eq. 2}\\
-    d - \alpha (l_1 + l_2) &= -l_2\lambda_1 -l_1\lambda_2 && \text{Eq. 1}\\
-    d &= -l_2\lambda_1 -l_1\lambda_2 + \alpha (l_1 + l_2) && \text{Soma dos dois lados}\\
-      &= -l_2\lambda_1 -l_1\lambda_2 + \alpha l_1 + \alpha l_2 && \text{Distributiva}\\
-      &= l_2(-\lambda_1 + \alpha) + l_1(-\lambda_2 + \alpha)  && \text{Distributiva} \\
-    d &= l_2\lambda_2 + l_1\lambda_1 && \lambda_1 + \lambda_2 = \alpha
+    d - \alpha c &= -k_2\lambda_1 -k_1\lambda_2 && \text{Eq. 2}\\
+    d - \alpha (k_1 + k_2) &= -k_2\lambda_1 -k_1\lambda_2 && \text{Eq. 1}\\
+    d &= -k_2\lambda_1 -k_1\lambda_2 + \alpha (k_1 + k_2) && \text{Soma dos dois lados}\\
+      &= -k_2\lambda_1 -k_1\lambda_2 + \alpha k_1 + \alpha k_2 && \text{Distributiva}\\
+      &= k_2(-\lambda_1 + \alpha) + k_1(-\lambda_2 + \alpha)  && \text{Distributiva} \\
+    d &= k_2\lambda_2 + k_1\lambda_1 && \lambda_1 + \lambda_2 = \alpha
 \end{align*}
 
 Dessa forma, o sistema se torna
 
 \begin{gather*}
   \begin{cases}
-    c &= l_1 + l_2, \\
-    d &= l_2\lambda_2 + l_1\lambda_1,
+    c &= k_1 + k_2, \\
+    d &= k_2\lambda_2 + k_1\lambda_1,
   \end{cases}
 \end{gather*}
 que é idêntico ao sistema da diagonalização!
