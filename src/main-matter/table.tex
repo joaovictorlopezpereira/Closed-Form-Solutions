@@ -4,70 +4,70 @@ Os dois capítulos anteriores chegaram à mesma fórmula fechada por caminhos qu
 Na tabela, $A$ é a mesma matriz $\begin{bmatrix} 0 & 1 \\ \beta & \alpha \end{bmatrix}$ nos dois métodos, $\bar{f}^{(0)} = V^{-1} f^{(0)}$ é o vetor de coordenadas do estado inicial na base de autovetores, e $[x^n]\,A(x)$ denota o coeficiente de $x^n$ na série $A(x)$, ou seja, o termo $f(n)$ da sequência (contando a partir de $n = 0$).
 
 \begin{landscape}
-\begin{center}
-  \small
-  \setlength{\tabcolsep}{5pt}
-  \renewcommand{\arraystretch}{1.3}
-  \begin{tabular}{@{}
-      >{\raggedright\arraybackslash}p{3.0cm}
-      >{\raggedright\arraybackslash}p{4.6cm}
-      >{\raggedright\arraybackslash}p{4.0cm}
-      >{\raggedright\arraybackslash}p{5.0cm}
-      >{\raggedright\arraybackslash}p{4.0cm}@{}}
-    \toprule
-    & \multicolumn{2}{c}{\textbf{Diagonalização}} & \multicolumn{2}{c@{}}{\textbf{Função geradora / frações parciais}} \\
-    \cmidrule(lr){2-3} \cmidrule(l){4-5}
-    \textbf{O que a linha quer dizer} & \textit{Matematiquês} & \textit{Português} & \textit{Matematiquês} & \textit{Português} \\
-    \midrule
+  \begin{center}
+    \small
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}
+        >{\raggedright\arraybackslash}p{3.0cm}
+        >{\raggedright\arraybackslash}p{4.6cm}
+        >{\raggedright\arraybackslash}p{4.0cm}
+        >{\raggedright\arraybackslash}p{5.0cm}
+        >{\raggedright\arraybackslash}p{4.0cm}@{}}
+      \toprule
+      & \multicolumn{2}{c}{\textbf{Diagonalização}} & \multicolumn{2}{c@{}}{\textbf{Função geradora / frações parciais}} \\
+      \cmidrule(lr){2-3} \cmidrule(l){4-5}
+      \textbf{O que a linha quer dizer} & \textit{Matematiquês} & \textit{Português} & \textit{Matematiquês} & \textit{Português} \\
+      \midrule
 
-    Representação da recorrência &
-    $f^{(n)} = A^n f^{(0)}$ &
-    o estado anda um passo a cada multiplicação por $A$ &
-    $A(x) = \sum_{n \geq 0} f(n) x^n = \dfrac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2}$ &
-    a sequência inteira fica guardada numa única função \\
+      Representação da recorrência &
+      $f^{(n)} = A^n f^{(0)}$ &
+      o estado anda um passo a cada multiplicação por $A$ &
+      $A(x) = \sum_{n \geq 0} f(n) x^n = \dfrac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2}$ &
+      a sequência inteira fica guardada numa única função \\
 
-    Polinômio associado &
-    $p(\lambda) = \det{A - \lambda I} = \lambda^2 - \alpha \lambda - \beta$ &
-    equação que decide as taxas de crescimento &
-    $Q(x) = \det{I - xA} = 1 - \alpha x - \beta x^2 = x^2 p(1/x)$ &
-    polinômio parecido com $p$, com o primeiro e o terceiro coeficientes trocados \\
+      Polinômio associado &
+      $p(\lambda) = \det{A - \lambda I} = \lambda^2 - \alpha \lambda - \beta$ &
+      equação que decide as taxas de crescimento &
+      $Q(x) = \det{I - xA} = 1 - \alpha x - \beta x^2 = x^2 p(1/x)$ &
+      polinômio parecido com $p$, com o primeiro e o terceiro coeficientes trocados \\
 
-    Raízes &
-    $p(\lambda_i) = 0$ &
-    $\lambda_i$ é o fator pelo qual cada componente é multiplicada a cada passo &
-    $Q(R_i) = 0$, com $R_1 = \frac{1}{\lambda_2}$ e $R_2 = \frac{1}{\lambda_1}$ &
-    as raízes do denominador são os inversos dos autovalores \\
+      Raízes &
+      $p(\lambda_i) = 0$ &
+      $\lambda_i$ é o fator pelo qual cada componente é multiplicada a cada passo &
+      $Q(R_i) = 0$, com \[R_1 = \frac{1}{\lambda_2} \,\, \text{e} \,\, R_2 = \frac{1}{\lambda_1}\] &
+      as raízes do denominador são os inversos dos autovalores \\
 
-    Decomposição em componentes &
-    $A v_i = \lambda_i v_i$, \ $v_i = \begin{bmatrix} 1 \\ \lambda_i \end{bmatrix}$ &
-    direções em que $A$ só estica (ou inverte o sentido): nelas o sistema se desacopla &
-    $Q(x) = (1 - \lambda_1 x)(1 - \lambda_2 x)$ &
-    quebrar o denominador em fatores simples, um para cada componente \\
+      Decomposição em componentes &
+      $A v_i = \lambda_i v_i$, \ $v_i = \begin{bmatrix} 1 \\ \lambda_i \end{bmatrix}$ &
+      direções em que $A$ só estica (ou inverte o sentido): nelas o sistema se desacopla &
+      $Q(x) = (1 - \lambda_1 x)(1 - \lambda_2 x)$ &
+      quebrar o denominador em fatores simples, um para cada componente \\
 
-    Coeficientes (sistema linear) &
-    $V \bar{f}^{(0)} = f^{(0)}$, \ $\bar{f}^{(0)} = V^{-1} f^{(0)}$ &
-    escrever o estado inicial como combinação dessas direções &
-    $l_1(1 - \lambda_2 x) + l_2(1 - \lambda_1 x) = c + (d - \alpha c)x \iff V l = f^{(0)}$ &
-    achar os coeficientes das frações parciais: é o mesmo sistema linear, logo $l = \bar{f}^{(0)}$ \\
+      Coeficientes (sistema linear) &
+      $V \bar{f}^{(0)} = f^{(0)}$, \ $\bar{f}^{(0)} = V^{-1} f^{(0)}$ &
+      escrever o estado inicial como combinação dessas direções &
+      $l_1(1 - \lambda_2 x) + l_2(1 - \lambda_1 x) = c + (d - \alpha c)x \iff V l = f^{(0)}$ &
+      achar os coeficientes das frações parciais: é o mesmo sistema linear, logo $l = \bar{f}^{(0)}$ \\
 
-    Evolução por $n$ passos &
-    $D^n = \begin{bmatrix} \lambda_1^n & 0 \\ 0 & \lambda_2^n \end{bmatrix}$ &
-    em cada direção, aplicar $A$ $n$ vezes é só multiplicar por $\lambda_i^n$ &
-    $\dfrac{1}{1 - \lambda_i x} = \sum_{n \geq 0} \lambda_i^n x^n$ &
-    cada fração vira uma progressão geométrica de razão $\lambda_i$ \\
+      Evolução por $n$ passos &
+      $D^n = \begin{bmatrix} \lambda_1^n & 0 \\ 0 & \lambda_2^n \end{bmatrix}$ &
+      em cada direção, aplicar $A$ $n$ vezes é só multiplicar por $\lambda_i^n$ &
+      $\dfrac{1}{1 - \lambda_i x} = \sum_{n \geq 0} \lambda_i^n x^n$ &
+      cada fração vira uma progressão geométrica de razão $\lambda_i$ \\
 
-    Fórmula fechada &
-    $f(n) = \bar{f}^{(0)}_1 \lambda_1^n + \bar{f}^{(0)}_2 \lambda_2^n$ &
-    o termo $n$ é a soma das contribuições de cada componente &
-    $f(n) = [x^n]\,A(x) = l_1 \lambda_1^n + l_2 \lambda_2^n$ &
-    o termo $n$ é o coeficiente de $x^n$: mesma fórmula \\
+      Fórmula fechada &
+      $f(n) = \bar{f}^{(0)}_1 \lambda_1^n + \bar{f}^{(0)}_2 \lambda_2^n$ &
+      o termo $n$ é a soma das contribuições de cada componente &
+      $f(n) = [x^n]\,A(x) = l_1 \lambda_1^n + l_2 \lambda_2^n$ &
+      o termo $n$ é o coeficiente de $x^n$: mesma fórmula \\
 
-    Caso de raiz dupla &
-    $\lambda_1 = \lambda_2 = \lambda \implies \nexists\, V, D$ ($V$ inversível, $D$ diagonal) com $A = V D V^{-1}$ &
-    só existe uma direção de autovetor, e a diagonalização não se aplica &
-    $Q(x) = (1 - \lambda x)^2$, \ $\dfrac{1}{(1 - \lambda x)^2} = \sum_{n \geq 0} (n+1) \lambda^n x^n$ &
-    o fator repetido gera o termo $n \lambda^n$, e a fórmula passa a ser $f(n) = (a + bn) \lambda^n$ \\
-    \bottomrule
-  \end{tabular}
-\end{center}
+      Caso de raiz dupla &
+      $\lambda_1 = \lambda_2 = \lambda \implies \nexists\, V, D$ ($V$ inversível, $D$ diagonal) com $A = V D V^{-1}$ &
+      só existe uma direção de autovetor, e a diagonalização não se aplica &
+      $Q(x) = (1 - \lambda x)^2$, \ $\dfrac{1}{(1 - \lambda x)^2} = \sum_{n \geq 0} (n+1) \lambda^n x^n$ &
+      o fator repetido gera o termo $n \lambda^n$, e a fórmula passa a ser $f(n) = (a + bn) \lambda^n$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
 \end{landscape}

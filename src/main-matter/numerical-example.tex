@@ -54,17 +54,17 @@ Pelo capítulo da diagonalização, os autovetores são $v_i = \begin{bmatrix} 1
     3 & -1
   \end{bmatrix},
   \quad
-  V^{-1} = \frac{1}{\lambda_2 - \lambda_1}
+  V^{-1} = \dfrac{1}{\lambda_2 - \lambda_1}
   \begin{bmatrix}
     \lambda_2 & -1 \\
     -\lambda_1 & 1
   \end{bmatrix}
-  = \frac{1}{-4}
+  = \dfrac{1}{-4}
   \begin{bmatrix}
     -1 & -1 \\
     -3 & 1
   \end{bmatrix}
-  = \frac{1}{4}
+  = \dfrac{1}{4}
   \begin{bmatrix}
     1 & 1 \\
     3 & -1
@@ -74,7 +74,7 @@ Pelo capítulo da diagonalização, os autovetores são $v_i = \begin{bmatrix} 1
 As coordenadas do estado inicial na base de autovetores são
 \[
   \bar{f}^{(0)} = V^{-1} f^{(0)}
-  = \frac{1}{4}
+  = \dfrac{1}{4}
   \begin{bmatrix}
     1 & 1 \\
     3 & -1
@@ -83,20 +83,24 @@ As coordenadas do estado inicial na base de autovetores são
     1 \\
     4
   \end{bmatrix}
-  = \frac{1}{4}
+  = \dfrac{1}{4}
   \begin{bmatrix}
     5 \\
     -1
   \end{bmatrix},
 \]
-isto é, $\bar{f}^{(0)}_1 = \frac{5}{4}$ e $\bar{f}^{(0)}_2 = -\frac{1}{4}$. Como $f^{(n)} = V D^n V^{-1} f^{(0)} = \bar{f}^{(0)}_1 \lambda_1^n v_1 + \bar{f}^{(0)}_2 \lambda_2^n v_2$, lendo a primeira componente:
+isto é,
 \[
-  f(n) = \frac{5}{4} \cdot 3^n - \frac{1}{4} (-1)^n = \frac{5 \cdot 3^n - (-1)^n}{4}.
+  \bar{f}^{(0)}_1 = \dfrac{5}{4} \,\, \text{e} \,\, \bar{f}^{(0)}_2 = -\dfrac{1}{4}.
+\]
+Como $f^{(n)} = V D^n V^{-1} f^{(0)} = \bar{f}^{(0)}_1 \lambda_1^n v_1 + \bar{f}^{(0)}_2 \lambda_2^n v_2$, lendo a primeira componente:
+\[
+  f(n) = \dfrac{5}{4} \cdot 3^n - \dfrac{1}{4} (-1)^n = \dfrac{5 \cdot 3^n - (-1)^n}{4}.
 \]
 
 O mesmo resultado sai substituindo direto na fórmula geral do capítulo da diagonalização:
 \[
-  f(n) = \frac{3^n (1 \cdot (-1) - 4) + (-1)^n (4 - 1 \cdot 3)}{-1 - 3} = \frac{-5 \cdot 3^n + (-1)^n}{-4} = \frac{5 \cdot 3^n - (-1)^n}{4}.
+  f(n) = \dfrac{3^n (1 \cdot (-1) - 4) + (-1)^n (4 - 1 \cdot 3)}{-1 - 3} = \dfrac{-5 \cdot 3^n + (-1)^n}{-4} = \dfrac{5 \cdot 3^n - (-1)^n}{4}.
 \]
 
 \section{Pela função geradora}
@@ -115,24 +119,27 @@ Convertendo para função geradora:
     A(x) (1 - 2x - 3x^2) = 1 + 2x
   }
   \step[\calciff]{Divisão dos dois lados}{
-    A(x) = \frac{1 + 2x}{1 - 2x - 3x^2}
+    A(x) = \dfrac{1 + 2x}{1 - 2x - 3x^2}
   }
 \end{calcproof}
 O numerador é $c + (d - \alpha c)x = 1 + (4 - 2)x = 1 + 2x$, como previsto pela fórmula geral.
 
 As raízes do denominador são
 \[
-  R_i = \frac{\lambda_i}{-\beta}:
+  R_i = \dfrac{\lambda_i}{-\beta}:
   \quad
-  R_1 = \frac{3}{-3} = -1,
+  R_1 = \dfrac{3}{-3} = -1,
   \quad
-  R_2 = \frac{-1}{-3} = \frac{1}{3},
+  R_2 = \dfrac{-1}{-3} = \dfrac{1}{3},
 \]
-e de fato $1 - 2x - 3x^2 = (1 - 3x)(1 + x)$ se anula em $x = -1$ e em $x = \frac{1}{3}$. Valem as relações do capítulo anterior: $R_1 R_2 = -\frac{1}{3} = -\frac{1}{\beta}$, $R_1 = \frac{1}{\lambda_2}$ e $R_2 = \frac{1}{\lambda_1}$.
+e de fato $1 - 2x - 3x^2 = (1 - 3x)(1 + x)$ se anula em $x = -1$ e em $x = 1/3$. Valem as relações do capítulo anterior:
+\[
+  R_1 R_2 = -\dfrac{1}{3} = -\dfrac{1}{\beta}, \,\, R_1 = \dfrac{1}{\lambda_2} \,\, \text{e} \,\, R_2 = \dfrac{1}{\lambda_1}.
+\]
 
 Fazendo as frações parciais:
 \begin{calcproof}[.]
-  \start{\frac{1 + 2x}{(1 - 3x)(1 + x)} = \frac{l_1}{1 - 3x} + \frac{l_2}{1 + x}}
+  \start{\dfrac{1 + 2x}{(1 - 3x)(1 + x)} = \dfrac{l_1}{1 - 3x} + \dfrac{l_2}{1 + x}}
   \step[\calciff]{Multiplicação pelo denominador comum}{
     1 + 2x = l_1 (1 + x) + l_2 (1 - 3x)
   }
@@ -143,7 +150,7 @@ Fazendo as frações parciais:
     \end{cases}
   }
   \step[\calciff]{Subtração das equações}{
-    l_2 = -\frac{1}{4} \ \land \ l_1 = \frac{5}{4}
+    l_2 = -\dfrac{1}{4} \ \land \ l_1 = \dfrac{5}{4}
   }
 \end{calcproof}
 
@@ -167,9 +174,9 @@ que é exatamente $V l = f^{(0)}$, o mesmo sistema que define $\bar{f}^{(0)}$.
 
 Por fim, como cada fração é uma série geométrica,
 \[
-  A(x) = \frac{5}{4} \sum_{n \geq 0} 3^n x^n - \frac{1}{4} \sum_{n \geq 0} (-1)^n x^n
+  A(x) = \dfrac{5}{4} \sum_{n \geq 0} 3^n x^n - \dfrac{1}{4} \sum_{n \geq 0} (-1)^n x^n
   \quad \Longrightarrow \quad
-  f(n) = \frac{5 \cdot 3^n - (-1)^n}{4}.
+  f(n) = \dfrac{5 \cdot 3^n - (-1)^n}{4}.
 \]
 
 \section{Conferindo}
@@ -180,7 +187,7 @@ Por fim, como cada fração é uma série geométrica,
     $n$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
     \hline
     recorrência & 1 & 4 & 11 & 34 & 101 & 304 & 911 \\
-    $\frac{5 \cdot 3^n - (-1)^n}{4}$ & 1 & 4 & 11 & 34 & 101 & 304 & 911
+    $\dfrac{5 \cdot 3^n - (-1)^n}{4}$ & 1 & 4 & 11 & 34 & 101 & 304 & 911
   \end{tabular}
 \end{center}
 
