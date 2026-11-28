@@ -27,23 +27,23 @@ podemos convertê-la em uma função geradora da seguinte forma
     A(x)(1 - \alpha x - \beta x^2) = c + (d - \alpha c)x
   }
   \step[\calciff]{Divisão dos dois lados}{
-    A(x) = \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2}
+    A(x) = \dfrac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2}
   }
 \end{calcproof}
 
 Com isso, sabemos encontrar a função geradora de qualquer recurção de ordem 2. Agora, vamos nos encaminhar para o método das frações parciais. Primeiro, temos que encontrar as raízes $R_1$ e $R_2$ da polinômio de segundo grau do denominador da função geradora. Aplicando a fórmula de Bhaskara, encontramos
 \[
-  R_1, R_2 = \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}
+  R_1, R_2 = \dfrac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}
 \]
 
 A princípio, esse resultando não parece muito interessante. No entanto, podemos notar que, quando comparamos as raízes com os autovalores encontrados pelo método da diagonalização, temos:
 
 \begin{calcproof}
-  \start{R_i = \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}}
+  \start{R_i = \dfrac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}}
   \step[\calciff]{Termo em evidência}{
-    R_i = \frac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{2 } \cdot \frac{1}{-\beta}
+    R_i = \dfrac{\alpha \pm \sqrt{\alpha^2 + 4 \beta}}{2 } \cdot \dfrac{1}{-\beta}
   }\step[\calciff]{Definição de $\lambda_i$}{
-    R_i = \frac{\lambda_i}{-\beta}
+    R_i = \dfrac{\lambda_i}{-\beta}
   }
 \end{calcproof}
 
@@ -52,13 +52,13 @@ Assim, temos sabemos como mapear todas as raízes do denominador da função ger
 Esse mapeamento se torna ainda mais interessante quando percebemos que
 
 \begin{calcproof}
-  \start{R_1 R_2 = \frac{\alpha + \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \cdot \frac{\alpha - \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}}
+  \start{R_1 R_2 = \dfrac{\alpha + \sqrt{\alpha^2 + 4 \beta}}{-2 \beta} \cdot \dfrac{\alpha - \sqrt{\alpha^2 + 4 \beta}}{-2 \beta}}
   \step[\calciff]{Produto notável}{
-    R_1 R_2 = \frac{\alpha^2 - (\alpha^2 + 4 \beta)}{4\beta^2}
+    R_1 R_2 = \dfrac{\alpha^2 - (\alpha^2 + 4 \beta)}{4\beta^2}
   }\step[\calciff]{Álgebra}{
-    R_1 R_2 = \frac{-4 \beta}{4\beta^2}
+    R_1 R_2 = \dfrac{-4 \beta}{4\beta^2}
   }\step[\calciff]{Álgebra}{
-    R_1 R_2 = \frac{-1}{\beta}
+    R_1 R_2 = \dfrac{-1}{\beta}
   }
 \end{calcproof}
 
@@ -69,35 +69,39 @@ Assim, concluímos que
 
 Dessa forma,
 \begin{gather*}
-  R_1 = \frac{1}{\lambda_2}, \\
-  R_2 = \frac{1}{\lambda_1},
+  R_1 = \dfrac{1}{\lambda_2}, \\
+  R_2 = \dfrac{1}{\lambda_1},
 \end{gather*}
 ou seja, as raízes são o inverso dos autovalores!
 
 Agora podemos começar o método das frações parciais.
 
 \begin{calcproof}
-  \start{A(x) = \frac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2}}
+  \start{A(x) = \dfrac{c + (d - \alpha c)x}{1 - \alpha x - \beta x^2}}
   \step[\calciff]{Fatoração do denominador}{
-    A(x) = \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
+    A(x) = \dfrac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}
   }
   \step[\calciff]{Frações parciais}{
-    A(x) = \frac{k_1}{1-\lambda_1 x} + \frac{k_2}{1-\lambda_2 x}
+    A(x) = \dfrac{k_1}{1-\lambda_1 x} + \dfrac{k_2}{1-\lambda_2 x}
   }
 \end{calcproof}
 
-Note que na direita temos duas funções geradoras notáveis: $\frac{1}{1-cx}$ é a sequência das potências de $c$! Portanto, encontramos a fórmula fechada dessa recursão!
+Note que na direita temos duas funções geradoras notáveis:
+\[
+  \dfrac{1}{1 - cx}
+\]
+é a sequência das potências de $c$. Portanto, encontramos a fórmula fechada dessa recursão!
 
 \[
-  a_n = k_1 \lambda_1^n + k_2 \lambda_2^n,
+  a_n = k_1 \lambda_1^n + k_2 \lambda_2^n.
 \]
 
 No entanto, ainda não conhecemos os coeficientes, e, além disso, para ver melhor a relação com o método da diagonalização, vamos ter que continuar massageando o método das frações parciais:
 
 \begin{calcproof}
-  \start{A(x) = \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}}
+  \start{A(x) = \dfrac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)}}
   \step[\calciff]{Frações parciais}{
-    \frac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} = \frac{k_1}{1-\lambda_1 x} + \frac{k_2}{1-\lambda_2 x}
+    \dfrac{c + (d - \alpha c)x}{(1-\lambda_1 x)(1-\lambda_2 x)} = \dfrac{k_1}{1-\lambda_1 x} + \dfrac{k_2}{1-\lambda_2 x}
   }\step[\calciff]{Multiplicação pelo denominador comum}{
     c + (d - \alpha c)x = k_1(1-\lambda_2x) + k_2(1-\lambda_1x)
   }\step[\calciff]{Distributiva}{
@@ -108,16 +112,14 @@ No entanto, ainda não conhecemos os coeficientes, e, além disso, para ver melh
 \end{calcproof}
 
 Dessa forma, chegamos no seguinte sistema linear:
-
 \begin{gather*}
   \begin{cases}
-    c &= k_1 + k_2\\
-    d - \alpha c &= -k_2\lambda_1 -k_1\lambda_2
+    c &= k_1 + k_2, \\
+    d - \alpha c &= -k_2\lambda_1 -k_1\lambda_2.
   \end{cases}
 \end{gather*}
 
 Note que podemos transformar a segunda igualdade de forma que
-
 \begin{calcproof}
   \start{d - \alpha c = -k_2\lambda_1 -k_1\lambda_2}
   \step[\calciff]{Equação 1}{

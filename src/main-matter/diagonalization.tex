@@ -1,9 +1,9 @@
 
 Considere a recorrência linear definida como
 \begin{align*}
-  f(n) = \alpha f(n-1) + \beta f(n-2), \\
-  f(0) = c, \\
-  f(1) = d.
+  f(0) &= c, \\
+  f(1) &= d, \\
+  f(n) &= \alpha f(n-1) + \beta f(n-2).
 \end{align*}
 
 Considerando o método de obtenção de fórmulas fechadas usando diagonalização, reescrevemos esse sistema como
@@ -60,7 +60,7 @@ Com isso, considerando nossa matriz $A$, obtemos:
   \step[\calciff]{Cálculo do determinante $2 \times 2$ e Álgebra}{
     \lambda^2 - \alpha \lambda - \beta = 0
   }
-  \step[\calciff]{Bhaskara}{
+  \step[\calciff]{Raízes da equação quadrática}{
     \lambda = \dfrac{\alpha \pm \sqrt{\alpha^2 + 4\beta}}{2}
   }
 \end{calcproof}
